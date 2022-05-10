@@ -1,15 +1,16 @@
-var bodyParser = require('body-parser')
-var express = require("express")
-var app = express()
-var router = require("./routes/routes")
- 
+const express = require("express");
+const chalk = require('chalk');
+const router = require("./src/routes/routes.js");
+
+const app = express();
+const port = 3000;
+
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use("/",router);
 
-app.listen(3000,() => {
-    console.log("Servidor rodando")
+app.listen(port, () => {
+    console.log(chalk.bgGreenBright.black(`Servidor rodando: http://localhost:${port}`));
 });
